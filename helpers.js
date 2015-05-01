@@ -8,6 +8,8 @@ Template.registerHelper('livestamp', function(date) {
     timestamp = date.toISOString();
   } else if (_.isString(date)){
     timestamp = date;
+  } else if(_.isNumber(date)) {
+    timestamp = new Date(date).toISOString();
   } else {
     timestamp = new Date().toISOString();
   }
