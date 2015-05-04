@@ -1,20 +1,15 @@
 var Template = Package.templating.Template;
 
 Template.registerHelper('livestamp', function(date) {
-  var timestamp;
-  var timestring;
+  var time = moment(date);
 
-  if (_.isDate(date)){
-    timestamp = date.toISOString();
-  } else if (_.isString(date)){
-    timestamp = date;
-  } else if(_.isNumber(date)) {
-    timestamp = new Date(date).toISOString();
-  } else {
-    timestamp = new Date().toISOString();
+  // Fallback to current time if `date` is invalid.
+  if(!time.isValid()) {
+    time = moment();
   }
-  
-  timestring =  moment(timestamp).fromNow();
+
+  var timestamp = time.toISOString(),
+      timestring = time.fromNow();
   
   return new Spacebars.SafeString('<span class="livestamp" data-livestamp="'+ timestamp  +'">'+timestring+'</span>');
 });
