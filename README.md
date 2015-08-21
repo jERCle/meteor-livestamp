@@ -19,8 +19,14 @@ A template helper is included to compensate for the initial delay when using liv
 <p>{{livestamp date}}</p>
 ```
 
-You can also use plain html with the data-livestamp attribute as per livestamp documentation.
+You can also use plain HTML with the `data-livestamp` attribute as per the livestamp documentation.
 
 ```html
 <span data-livestamp="2013-12-24T08:14:42.345Z"></span>
+```
+
+It's a good idea to have the exact time in a tooltip:
+
+```html
+<span data-livestamp="{{yourDate}}" title="{{yourDate}}"></span>
 ```
